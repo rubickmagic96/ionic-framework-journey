@@ -1,0 +1,7 @@
+{
+  "name": "pusher-chat-realtime",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
