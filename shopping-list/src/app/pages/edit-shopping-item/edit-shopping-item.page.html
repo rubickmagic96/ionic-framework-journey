@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Edit Item</ion-title>
+
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-label>Name</ion-label>
+    <ion-input [(ngModel)]="item.name" placeholder="IpadPro"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Quantity</ion-label>
+    <ion-input [(ngModel)]="item.quantity" type="number" placeholder="1"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Price</ion-label>
+    <ion-input [(ngModel)]="item.price" type="number" placeholder="700"></ion-input>
+  </ion-item>
+  
+  <ion-button shape="round" (click)="saveItem(item)">Save</ion-button>
+  <ion-button color="danger" shape="round" (click)="deleteItem(item)">Delete</ion-button>
+</ion-content>
