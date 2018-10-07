@@ -32,7 +32,7 @@ app.post('/messages', (req, res) => {
     const { text, id } = body;
     const result = sentiment.analyze(text);
     const comparative = result.comparative;
-    const tone = comparative >= 0 ? (comparative >= 1 ? 'positive' : 'neutral') : 'navigate';
+    const tone = comparative >= 0 ? (comparative >= 1 ? 'positive' : 'neutral') : 'negative';
     const data = {
         text,
         id,

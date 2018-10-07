@@ -1,3 +1,4 @@
+import { EmojiComponent } from './../components/emoji/emoji.component';
 import { ChatComponent } from './../components/chat/chat.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -18,8 +19,7 @@ import { HomePage } from './home.page';
         component: HomePage
       }
     ]),
-    ChatComponent
   ],
-  declarations: [HomePage]
+  declarations: [HomePage, ChatComponent, EmojiComponent]
 })
 export class HomePageModule {}

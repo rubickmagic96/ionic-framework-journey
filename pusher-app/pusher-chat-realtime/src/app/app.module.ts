@@ -1,5 +1,4 @@
 import { ChatComponent } from './components/chat/chat.component';
-import { HomePage } from './home/home.page';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, RouteReuseStrategy, Routes } from '@angular/router';
@@ -14,14 +13,14 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, ChatComponent],
+  declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule, 
     IonicModule.forRoot(), 
     AppRoutingModule, 
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [
     StatusBar,

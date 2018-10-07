@@ -1,3 +1,4 @@
+import { PusherService } from './../../services/pusher/pusher.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { v4 } from 'uuid';
@@ -18,16 +19,38 @@ export class ChatComponent implements OnInit {
 
   messages: Array<Message> = [];
   message: string = '';
-
   lastMessageId;
+  showEmojis = false;
+  score = {
+    tone: '',
+    score: 0
+  };
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private pusher: PusherService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    const channel = this.pusher.init();
+    channel.bind('message', (data) => {
+      if (data.id !== this.lastMessageId) {
+        const message: Message = {
+          ...data,
+          type: 'incoming'
+        };
+        this.showEmojis = true;
+        this.score = data.sentiment;
+        this.messages = this.messages.concat(message);
+      }
+    })
+  }
 
   sendMessage() {
+    console.log('clickable');
+    console.log(this.message);
     if (this.message !== '') {
       this.lastMessageId = v4();
+      this.showEmojis = false;
 
       const data = {
         id: this.lastMessageId,
@@ -46,10 +69,16 @@ export class ChatComponent implements OnInit {
     }
   }
 
+  selectEmoji(e) {
+    const emoji = String.fromCodePoint(e);
+    this.message += `${emoji}`;
+    this.showEmojis = false;
+  }
+
   getClasses(messageType) {
     return {
       incoming: messageType === 'incoming',
-      outgoing: messageType === 'outgoin'
+      outgoing: messageType === 'outgoing'
     }
   }
 }
